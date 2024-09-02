@@ -11,7 +11,7 @@ app.get("/testing", (req, res)=> {
     res.send("<h1>Hello Subhankar</h1>"); 
 })
 app.get("/server", (req, res)=> { 
-    res.send("<h2>This is a testing server Atendeor</h2>"); 
+    res.send("<h2>This is a testing server Atendeor Flutter APP</h2>"); 
 })
 
 app.listen(process.env.PORT, ()=>{
