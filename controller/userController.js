@@ -5,12 +5,12 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config(); 
 
 async function register(req, res) {
-    const {name, email, phoneNumber, password } = req.body;
     // const email = req.params.email; 
-        // const password = req.params.password
+    // const password = req.params.password
+    const {name, email, phoneNumber, password } = req.body;
     try {
         // checking for if user exsists or not
-        let user = await User.findOne({ email }); 
+        let user = await User.findOne({email: req.body.email}); 
         if(user) { 
             res.status(400).json({messeg: "Already Exists"}); 
         }
@@ -42,7 +42,7 @@ async function register(req, res) {
 }
 
 async function login(req, res) {
-    const {email, password} = req.body; 
+    const {email, password} = req.query; 
     try{
         let user = await User.findOne( { email } ); 
         
