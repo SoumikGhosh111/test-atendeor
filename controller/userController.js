@@ -78,4 +78,20 @@ async function login(req, res) {
 }
 
 
-module.exports = { register, login }; 
+async function allUsers(req, res){
+    const keyword = req.query
+    try{ 
+        console.log(keyword)
+        res.status(200).json({ 
+           keyword: keyword
+        })
+
+    }catch(e) { 
+        res.status(500).json({ 
+            message: e.message
+        })
+    }
+}
+
+
+module.exports = { register, login, allUsers }; 

@@ -3,6 +3,20 @@ const express = require("express");
 const connectDB = require('./config/db'); 
 const app = express(); 
 
+// cors
+const cors = require('cors'); 
+
+// creating a io server
+const http = require('http'); 
+const {Server} = require('socket.io'); 
+const server = http.createServer(app); 
+
+const io = new Server(server, { 
+    cors: { 
+        origin: '*', 
+        methods: ["GET", "POST"]
+    }
+})
 // IMPORTING ROUTES
 // users
 const userRoutes = require("./routes/userRoutes"); 
@@ -13,9 +27,13 @@ app.get("/", (req, res) => {
     res.send("server is running on PORT"+ process.env.PORT); 
 });
 
-
+// middlewares
 app.use(bodyParser.json()); 
+app.use(cors()); 
 
+io.on("Connection", (socket) => { 
+    console.log("Connected"); 
+}) 
 
 
 // establishing connection with the data base
