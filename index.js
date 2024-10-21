@@ -19,7 +19,10 @@ const io = new Server(server, {
 })
 // IMPORTING ROUTES
 // users
-const userRoutes = require("./routes/userRoutes"); 
+const userRoutes = require("./routes/userRoutes");
+
+// chat
+const chatRoutes = require("./routes/chatRoutes");  
 const bodyParser = require('body-parser');
 
 
@@ -43,6 +46,9 @@ connectDB();
 // defining the routes
 // user routes
 app.use("/api/users", userRoutes); 
+
+// chat routes
+app.use("/api/chats", chatRoutes); 
 
 
 app.get("/testing", (req, res)=> { 
